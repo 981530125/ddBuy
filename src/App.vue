@@ -21,6 +21,7 @@ export default {
     data () {
       	return {}
     },
+    // yisoaakdamcasfnjka
     // created() {
     //     //在页面加载时读取sessionStorage里的状态信息
     //     if (sessionStorage.getItem('store')) {
