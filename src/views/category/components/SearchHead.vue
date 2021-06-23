@@ -68,7 +68,7 @@ export default {
 .iconSearchWrapper {
   position: absolute;
   left: 0.9375rem;
-  top: 0.75rem;
+  // top: 0.75rem;
   width: 1.25rem;
   height: 1.25rem;
 }

@@ -1,9 +1,4 @@
 /*
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:05:06
  * @Description: 项目主入口
  * @FilePath: /ddBuy/src/main.js
  */
@@ -14,6 +9,7 @@ import store from './store/store'
 import FastClick from 'fastclick'
 import VTop from './components/backToTop/ToTop.vue'
 import './icons' // icon
+import './icons/iconfont.css'
 
 // 解决移动端点击延迟200ms的问题
 if ('addEventListener' in document) {
@@ -38,7 +34,11 @@ import '@/config/rem'
 import 'reset-css'
 //  全局引入 过滤器
 import '@/config/filter'
+import { Card,Col, Row } from 'vant';
 
+Vue.use(Card);
+Vue.use(Col);
+Vue.use(Row);
 
 new Vue({
     router,

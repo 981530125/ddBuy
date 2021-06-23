@@ -15,7 +15,7 @@
        titleWrapper">
       <h4><strong>购物车</strong></h4>
       <div class="clearCart"
-           :style="selectedGoodsCount==0?'color:grey':'color:#45c763'"
+           :style="selectedGoodsCount==0?'color:grey':'color:#ff8097'"
            @click="clearCart"
            v-show="isShowEmptyCart">删除</div>
     </header>
@@ -71,16 +71,16 @@
                         :disabled="!(selectedGoodNum>0)"
                         v-show="isShowEmptyCart">
           <van-checkbox v-model="isCheckedAll"
-                        checked-color='#45c763'>全选</van-checkbox>
+                        checked-color='#ff8097'>全选</van-checkbox>
         </van-submit-bar>
       </div>
       <!-- 猜你喜欢 -->
-      <van-divider :style="{ color: 'black', borderColor: 'grey', padding: '0 16px' }">
+      <!-- <van-divider :style="{ color: 'black', borderColor: 'grey', padding: '0 16px' }">
         猜你喜欢
-      </van-divider>
+      </van-divider> -->
       <!-- 商品详情组件 需要注意下底部是否被遮盖 动态设置padding-bottom -->
-      <produceItem :product_lists="youLike_product_lists"
-                   :style="isShowEmptyCart?'padding-bottom:5.5rem':'padding-bottom:3rem'" />
+      <!-- <produceItem :product_lists="youLike_product_lists"
+                   :style="isShowEmptyCart?'padding-bottom:5.5rem':'padding-bottom:3rem'" /> -->
     </div>
     <Loading :show="isShowLoading" />
     <!-- 回到顶部组件 -->
@@ -190,7 +190,7 @@ export default {
     // 2.数据加载
     async _initData () {
       let ref = await getGuessYouLike();
-      if (ref.success) {
+      if (ref.msg == 'ok') {
         this.youLike_product_lists = ref.data.product_list;
         this.isShowLoading = false;
       }
@@ -281,7 +281,7 @@ export default {
     }
     @media screen and (min-width: 375px) and(max-width: 420px) {
       .van-submit-bar {
-        bottom: 2.7rem;
+        bottom: 2.6rem;
       }
     }
     @media screen and (min-width: 420px) and(max-width: 1024px) {
@@ -306,7 +306,8 @@ export default {
       .goHome {
         margin-top: 2rem;
         color: white;
-        background-color: #45c763;
+        // background-color: #45c763;
+        background-color: #ff8097;
         text-align: center;
         margin: 0 auto;
         padding: 0.5rem;

@@ -10,7 +10,7 @@
 <template>
   <div class="wrapper">
     <!-- 可滑动的标题 -->
-    <div class="subTitleWrapper"
+    <!-- <div class="subTitleWrapper"
          ref="subTitleWrapper">
       <ul ref="ulContent">
         <li class="title"
@@ -22,9 +22,9 @@
           {{detailItem.name}}
         </li>
       </ul>
-    </div>
+    </div> -->
     <!-- 下拉菜单 -->
-    <div class="showMenu"
+    <!-- <div class="showMenu"
          @click="menuClick"
          v-show="isShowDropMenu">
       <span class="downMenu"
@@ -37,13 +37,13 @@
         <svg-icon iconClass="up"
                   style="width:1.5rem;height:1.5rem" />
       </span>
-    </div>
+    </div> -->
     <!-- 下拉菜单内容 -->
-    <DropMenu :menuDown="!menuDown"
+    <!-- <DropMenu :menuDown="!menuDown"
               :categoriesDetailData="categoriesDetailData"
               :currentSubTitle="currentSubTitle"
               @itemClick="itemClick"
-              @touchClick="menuClick"></DropMenu>
+              @touchClick="menuClick"></DropMenu> -->
 
     <!-- 商品内容列表 -->
     <section class="r_list"
@@ -52,13 +52,13 @@
         <div v-for="(it,index) in categoriesDetailData"
              :key="index"
              ref="good">
-          <p class="productCategoryTitle">
+          <!-- <p class="productCategoryTitle">
             {{it.name}}
-          </p>
+          </p> -->
           <ul>
             <li v-for="(item,index) in it.products"
                 :key="index"
-                class="list "
+                class="list"
                 @click.stop="goToGoodsDetail(item)">
               <div class="list_item flex">
                 <p>
@@ -114,9 +114,9 @@ export default {
   mounted () {
     // 初始化更新滑动组件
     this.$nextTick(() => {
-      this._initTitleScroll();
+      // this._initTitleScroll();
       this._initProductScroll();
-      this._isShowDropMenu();
+      // this._isShowDropMenu();
     });
   },
   computed: {
@@ -128,10 +128,10 @@ export default {
       this.menuDown = true;
       // 初始化更新滑动组件
       this.$nextTick(() => {
-        this._initTitleScroll();
+        // this._initTitleScroll();
         this._initProductScroll();
         // 是否显示下拉菜单按钮
-        this._isShowDropMenu();
+        // this._isShowDropMenu();
       });
     }
   },
@@ -140,23 +140,23 @@ export default {
     ...mapMutations(['ADD_GOODS', 'ADD_TO_CART']),
     // 1.titleScroll 滚动初始化
     _initTitleScroll () {
-      let contentWrapperWidth = 120;
-      let el = this.$refs.subTitle;
-      for (let i = 0; i < el.length; i++) {
-        contentWrapperWidth += el[i].clientWidth;
-      }
+      // let contentWrapperWidth = 120;
+      // let el = this.$refs.subTitle;
+      // for (let i = 0; i < el.length; i++) {
+      //   contentWrapperWidth += el[i].clientWidth;
+      // }
       // 1.1给ul设置宽度,保证可以横向滚动
-      this.$refs.ulContent.style.width = contentWrapperWidth + 'px';
-      if (!this.titleScroll) {
-        this.titleScroll = new BScroll('.subTitleWrapper', {
-          probeType: 3,
-          startX: 0,
-          click: true,
-          scrollX: true,
-        });
-      } else {
-        this.titleScroll.refresh();
-      }
+      // this.$refs.ulContent.style.width = contentWrapperWidth + 'px';
+      // if (!this.titleScroll) {
+      //   this.titleScroll = new BScroll('.subTitleWrapper', {
+      //     probeType: 3,
+      //     startX: 0,
+      //     click: true,
+      //     scrollX: true,
+      //   });
+      // } else {
+      //   this.titleScroll.refresh();
+      // }
     },
     // 2.产品列表滚动初始化
     _initProductScroll () {
@@ -203,12 +203,12 @@ export default {
       this.menuDown = false;
     },
     // 7.是否显示标题下拉按钮
-    _isShowDropMenu () {
-      // 如果标题超出则显示下拉框按钮
-      let subTitleWrapperWidth = this.$refs.subTitleWrapper.clientWidth;
-      let ulContentWidth = this.$refs.ulContent.clientWidth;
-      this.isShowDropMenu = ulContentWidth > subTitleWrapperWidth ? true : false;
-    },
+    // _isShowDropMenu () {
+    //   // 如果标题超出则显示下拉框按钮
+    //   let subTitleWrapperWidth = this.$refs.subTitleWrapper.clientWidth;
+    //   let ulContentWidth = this.$refs.ulContent.clientWidth;
+    //   this.isShowDropMenu = ulContentWidth > subTitleWrapperWidth ? true : false;
+    // },
     // 商品详情页面
     goToGoodsDetail (goods) {
       this.$router.push({
@@ -250,7 +250,7 @@ export default {
       padding: 1rem;
     }
     .selected {
-      color: #3cb963;
+      color: #ff1850;
     }
   }
   .showMenu {
@@ -273,9 +273,11 @@ export default {
   position: absolute;
   left: 5.2rem;
   right: 0;
-  top: 2.9rem;
+  top: 0rem;
   bottom: 0rem;
-  overflow: hidden;
+  // overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   // 防止抖动
   -webkit-transform: translateZ(0);
   transform: translateZ(0);

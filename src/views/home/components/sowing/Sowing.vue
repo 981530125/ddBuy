@@ -1,27 +1,17 @@
-<!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-08 10:02:43
- * @Description: 首页->轮播组件
- * @FilePath: /ddBuy/src/views/home/components/sowing/Sowing.vue
- -->
 <template>
-  <swiper id="swiper"
-          :options="swiperOption"
-          ref="mySwiper">
-    <!-- slides -->
-    <swiper-slide v-for="(sowing,index) in sowing_list"
-                  :key="sowing.public_id">
-      <img :src="sowing.icon_url"
-           :alt="sowing.public_name">
-    </swiper-slide>
-
-    <!-- Optional controls -->
-    <div class="swiper-pagination"
-         slot="pagination"></div>
-  </swiper>
+	<swiper id="swiper"
+			:options="swiperOption"
+			ref="mySwiper" @slideChangeTransitionEnd="onChange">
+		<!-- slides -->
+		<swiper-slide v-for="(sowing,index) in sowing_list"
+					:key="index">
+			<img :src="sowing.icon_list[0].icon_url"
+			:alt="sowing.public_name">
+		</swiper-slide>
+		<!-- Optional controls -->
+		<div class="swiper-pagination"
+			slot="pagination"></div>
+	</swiper>
 </template>
 
 <script type="text/javascript">
@@ -59,6 +49,7 @@ export default {
         // 滑动后回调函数
         on: {
           slideChangeTransitionEnd () {
+
           },
           //   preventLinksPropagation: false
         }
@@ -68,6 +59,12 @@ export default {
   components: {
     swiper,
     swiperSlide
+  },
+  methods: {
+    onChange() {
+		let _this = this;
+		_this.$emit('getindex',this.$refs.mySwiper.swiper.activeIndex);
+    },
   },
   mounted () {
 
@@ -83,10 +80,14 @@ export default {
 
 <style scoped>
 #swiper {
-  padding-top: 6rem;
-  width: 95%;
+  /* padding-top: 6rem; */
+  margin: 0 10px;
+  margin-top: 7rem;
+  overflow: hidden;
+  border-radius: 8px;
   height: 10rem;
-  border-radius: 1rem;
+  z-index: 10;
+  /* border-radius: 1rem; */
 }
 #swiper img {
   width: 100%;
@@ -96,12 +97,12 @@ export default {
 穿透修改样式
 */
 #swiper >>> .swiper-pagination-bullet-active {
-  background-color: #75a342;
+  background-color: #ff8097;
 }
 
 #swiper >>> .swiper-pagination-bullet {
   width: 0.3rem;
   height: 0.3rem;
-  border-radius: 0;
+  /* border-radius: 0; */
 }
 </style>

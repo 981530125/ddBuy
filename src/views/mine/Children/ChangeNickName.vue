@@ -85,7 +85,8 @@ export default {
   background-color: #f5f5f5;
   z-index: 999;
   .van-nav-bar__text {
-    color: #45c763;
+    // color: #45c763;
+    color: #ff8097;
   }
 }
 </style>

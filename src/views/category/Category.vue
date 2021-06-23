@@ -17,6 +17,9 @@
       <!--左边-->
       <div class="leftWrapper">
         <ul class="wrapper">
+          <!-- <li style="width:100%;height:59px;line-height:59px;text-align:center;">
+            <button @click="aaa()">aaaa</button>
+          </li> -->
           <li class="categoryItem"
               v-for="(cate, index) in categoriesData"
               :class="{selected: currentIndex === index}"
@@ -49,6 +52,8 @@ import { getCategoryData, getCategoryDetailData } from './../../serve/api/index.
 import Loading from '../../components/loading/LoadingGif'
 // 5.引入加载动画
 import LoadingGif from '../../components/loading/Loading'
+
+let json = require('@/api/homeApi/categoriesdetail/lk007.json')
 export default {
   name: "Category",
   data () {
@@ -61,7 +66,8 @@ export default {
       categoriesDetailData: [],
       // 左边item选中与否
       currentIndex: 0,
-      isShowLoadingGif: false
+      isShowLoadingGif: false,
+      json:json
     }
   },
   created () {
@@ -85,16 +91,56 @@ export default {
     })
   },
   methods: {
+    async aaa(){
+      let _this = this;
+      var cate = _this.json.data.cate;
+      var list = [];
+      
+      cate.forEach(function(item,index){
+         var productslist = item.products;
+         productslist.forEach((items,indexs)=>{
+           var arr = {
+             'productcode_id':items.id,
+             'product_name':items.product_name,
+             'name':items.name,
+             'origin_price':items.origin_price,
+             'price':items.price,
+             'spec':items.spec,
+             'small_image':items.small_image,
+             'category_id':items.category_id,
+             'total_sales':items.total_sales,
+             'month_sales':items.month_sales,
+             'buy_limit':items.buy_limit,
+             'is_promotion':items.is_promotion,
+             'mark_discount':items.mark_discount,
+             'is_booking':items.is_booking,
+             'stock_number':items.stock_number,
+             'delivery_id':0,
+             'activity_id':0,
+             'today_stockout':items.today_stockout,
+             'status':items.status
+           };
+           list.push(arr);
+         })
+      })
+
+
+      let leftRes = await getCategoryData(list);
+
+      // console.log(leftRes);
+    },
+
     // 1. 初始化操作(数据和界面)
     async _initData () {
       // 1.1 获取左边的数据
       let leftRes = await getCategoryData();
-      if (leftRes.success) {
+      if (leftRes.msg == 'ok') {
         this.categoriesData = leftRes.data.cate;
       }
+      
       // 1.2 获取右边的数据
-      let rightRes = await getCategoryDetailData('/lk001');
-      if (rightRes.success) {
+      let rightRes = await getCategoryDetailData('1');
+      if (rightRes.msg == 'ok') {
         this.categoriesDetailData = rightRes.data.cate;
       }
       // 1.3. 隐藏loading框
@@ -132,12 +178,14 @@ export default {
       // 2.4 获取右边的数据
       let param;
       if (index >= 9) {
-        param = `/lk0${index + 1}`;
+        param = `${index + 1}`;
       } else {
-        param = `/lk00${index + 1}`;
+        param = `${index + 1}`;
       }
+
       let rightRes = await getCategoryDetailData(param);
-      if (rightRes.success) {
+
+      if (rightRes.msg == 'ok') {
         this.categoriesDetailData = rightRes.data.cate;
       }
       this.isShowLoadingGif = false;
@@ -188,7 +236,7 @@ export default {
 }
 
 .categoryItem.selected .textWrapper {
-  border-left-color: #3cb963;
+  border-left-color: #ff8097;
   font-weight: bold;
   font-size: 0.875rem;
   color: #333333;

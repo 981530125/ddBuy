@@ -1,9 +1,4 @@
 <!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-12 09:43:34
  * @Description: 订单->我的地址
  * @FilePath: /ddBuy/src/views/order/children/MyAddress.vue
  -->
@@ -76,6 +71,9 @@ export default {
     },
     onBackAddress (item, index) {
       // 发布通知到订单界面修改值
+      console.log(item);
+
+
       PubSub.publish(CHOOSE_USER_ADDRESS, item);
       // 返回到上一个界面
       this.$router.back();
@@ -126,7 +124,8 @@ export default {
     left: 15%;
     width: 70%;
     border-radius: 2rem;
-    background-color: #45c763;
+    // background-color: #45c763;
+    background-color: #ff8097;
     border: none;
   }
 }

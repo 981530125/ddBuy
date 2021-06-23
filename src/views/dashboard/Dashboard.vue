@@ -12,11 +12,11 @@
     <van-tabbar v-model="active"
                 :safe-area-inset-bottom=true
                 class="active_tab"
-                active-color="#75a342">
+                active-color="#ff1850">
       <!-- 给购物车的Tabbar加个ID 方便做加入购物车的小球动画 -->
       <van-tabbar-item v-for="(item,index) in tabbars"
                        :key="index"
-                       :id="index==3?'buycar':''"
+                       :id="index==2?'buycar':''"
                        @click="tab(index,item.name)"
                        :info="item.name=='cart'?goodsNum:''">
         <span :class="currIndex == index ? active:''">{{item.title}}</span>
@@ -73,18 +73,18 @@ export default {
           normal: require("@/images/tabbar/category_default.png"),
           active: require("@/images/tabbar/category_selected.png")
         },
-        {
-          name: "eat",
-          title: "吃什么",
-          normal: require("@/images/tabbar/eat_default.png"),
-          active: require("@/images/tabbar/eat_selected.png"),
-        },
+        // {
+        //   name: "eat",
+        //   title: "吃什么",
+        //   normal: require("@/images/tabbar/eat_default.png"),
+        //   active: require("@/images/tabbar/eat_selected.png"),
+        // },
         {
           name: "cart",
           title: "购物车",
           normal: require("@/images/tabbar/shoppingcart_default.png"),
           active: require("@/images/tabbar/shoppingcart_selected.png"),
-          num: 5
+          // num: 5
         },
         {
           name: "mine",
@@ -127,11 +127,16 @@ export default {
     },
     tabbarSelected (item) {
       const mapType = {
+        // home: 0,
+        // category: 1,
+        // eate: 2,
+        // cart: 3,
+        // mine: 4
         home: 0,
         category: 1,
-        eate: 2,
-        cart: 3,
-        mine: 4
+        // eate: 2,
+        cart: 2,
+        mine: 3
       }
       this.active = mapType[item]
     }

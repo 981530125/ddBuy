@@ -53,7 +53,7 @@ export default {
     async _initData () {
       // 第一条数据
       let ref = await getTodayMenuDetail('/lk01');
-      if (ref.success) {
+      if (ref.msg == 'ok') {
         this.menulistDetail = ref.data.big_recommend.list;
         this.data = ref.data.big_recommend.list;
       }

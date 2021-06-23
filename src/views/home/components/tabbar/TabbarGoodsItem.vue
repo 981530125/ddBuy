@@ -14,11 +14,12 @@
               swipeable
               sticky
               :border="false"
-              :offset-top="47"
+              :offset-top="59"
               ref="tabs"
               type="line"
-              color="#28BE57"
-              title-active-color="#28BE57"
+              color="#ff8097"
+              active-color="#ff8097"
+              title-active-color="#ff8097"
               animated:yes>
       <!-- 全部 -->
       <van-tab>

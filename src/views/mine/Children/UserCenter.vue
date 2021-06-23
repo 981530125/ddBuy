@@ -14,7 +14,7 @@
                  :border=false
                  @click-left="onClickLeft"
                  left-arrow
-                 style="height:2.5rem" />
+                 style="height:2.5rem;" />
     <div class="icon">
       <span class="title">头像</span>
       <img src="./../../../images/mine/defaultImg.jpeg"

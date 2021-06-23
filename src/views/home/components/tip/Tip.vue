@@ -80,7 +80,8 @@ export default {
 
 .tipText {
   font-size: 0.6rem;
-  color: #45c763;
+  // color: #45c763;
+  color:#ff8097;
 }
 .adImg {
   margin-top: 0.8rem;

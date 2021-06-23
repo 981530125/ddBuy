@@ -12,10 +12,10 @@
     <div class="loginBox"
          @click="changeImage(3)">
       <div class="auth-form">
-        <div class="panfish">
+        <!-- <div class="panfish">
           <img :src="imageURL"
                alt="">
-        </div>
+        </div> -->
         <!-- 关闭按钮 -->
         <van-icon name="close"
                   class="closeButton"
@@ -242,7 +242,7 @@ export default {
             duration: 800
           });
           return;
-        } else if (this.smsCaptcha < 7 || this.smsCaptcha != Number(this.smsCaptchaResult)) {
+        }else if (this.smsCaptcha < 7 || this.smsCaptcha != Number(this.smsCaptchaResult)) {
           // 5.1.2 验证验证码
           Toast({
             message: '请输入正确的验证码',
@@ -284,7 +284,7 @@ export default {
           return;
         }
         // 5.2.2 请求后台
-        let ref = await phoneCaptchaLogin(this.login_userName, this.login_password);
+        let ref = await pwdLogin(this.login_userName, this.login_password,this.imgCaptcha);
         this.syncuserInfo(ref.data);
         this.$router.back();
       }

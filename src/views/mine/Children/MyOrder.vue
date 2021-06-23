@@ -22,37 +22,38 @@
               :border="false"
               :offset-top="47"
               ref="tabs"
+              @change="changtab"
               type="line"
-              color="#28BE57"
-              title-active-color="#28BE57"
+              color="##ff8097"
+              title-active-color="##ff8097"
               animated:yes>
       <!-- 全部 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[0]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray" />
+        <OrderType :type="-1" ref="all"/>
       </van-tab>
       <!-- 待支付 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[1]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray" />
+        <OrderType :type="10" ref="wait"/>
       </van-tab>
       <!-- 待收货 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[2]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray" />
+        <OrderType :type="40" ref="unfinish"/>
       </van-tab>
       <!-- 待评价-->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[3]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray" />
+        <OrderType :type="50" ref="unassess"/>
       </van-tab>
     </van-tabs>
   </div>
@@ -60,22 +61,57 @@
 <script type="text/javascript">
 import OrderType from './MyOrderChildren/OrderType'
 export default {
-  data () {
-    return {
-      typeArray: [],
-      // 路由传递过来的数据 active
-      active: this.$route.params.active,
-      itemsTitle: ['全部', '待支付', '待收货', '待评价'],
+	data () {
+		return {
+			typeArray: [],
+			// 路由传递过来的数据 active
+			active: this.$route.params.active,
+			itemsTitle: ['全部', '待支付', '待收货', '待评价'],
+			reftype:['all','wait','unfinish','unassess'],
+		}
+	},
+	components: {
+		OrderType
+	},
+	methods: {
+		onClickLeft () {
+			this.$router.back();
+		},
+		getAllorderlist:function(){
+			this.typeArray = ['1']
+    },
+    changtab:function(name,title){
+		let _this = this;
+		let reftype = _this.reftype[name];
+		let type = -1;
+		if(_this.$refs[reftype]){
+			switch (reftype) {
+				case 'all':
+					type = -1;
+					break;
+				case 'wait':
+					type = 10;
+					break;
+				case 'unfinish':
+					type = 40;
+					break;
+				case 'unassess':
+					type = 50;
+					break;
+				default:
+					type = -1;
+					break;
+			}
+			_this.$refs[reftype].getorderlist(type);
+		}
     }
-  },
-  components: {
-    OrderType
-  },
-  methods: {
-    onClickLeft () {
-      this.$router.back();
-    }
-  }
+	},
+	mounted () {
+		this.getAllorderlist()
+	},
+	created () {
+
+	}
 }
 </script>
 

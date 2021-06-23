@@ -2,7 +2,8 @@ import {
     SELECTED_GOODS_COUNT,
     SELECTED_GOODS,
     SELECTED_GOODS_PRICE,
-    USER_SEX
+    USER_SEX,
+    USER_INFO,
 } from "./mutation-type";
 
 // 引入本地存储
@@ -54,11 +55,15 @@ export default {
     // 性别
     [USER_SEX](state) {
         if (state.userInfo.sex == '1') {
-            return '美女'
+            return '女'
         } else if (state.userInfo.sex == '2') {
-            return '帅哥';
+            return '男';
         } else {
             return '未填写'
         }
+    },
+    // 用户信息
+    [USER_INFO](state) {
+        return state.userInfo
     }
 }

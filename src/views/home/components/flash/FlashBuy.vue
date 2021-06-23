@@ -1,17 +1,10 @@
-<!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 14:59:22
- * @Description: 首页->限时抢购
- * @FilePath: /ddBuy/src/views/home/components/flash/FlashBuy.vue
- -->
 <template>
   <div id="wrapper">
-    <div class="titleWrapper">
-      <div class="title">限时抢购</div>
-      <van-count-down :time="time"
+    <div class="titleWrapper" style="position:relative;">
+      <van-divider :style="{position:'relative',width:'129px',margin: '0 auto',fontWeight:'bold', color: '#000', borderColor: '#000', padding: '0 16px' }"
+>人气商品</van-divider>
+      <!-- <div class="title">人气商品</div> -->
+      <!-- <van-count-down :time="time"
                       class="countStyle"
                       format="HH mm ss">
         <template v-slot="timeData">
@@ -19,10 +12,12 @@
           <span class="item">{{ timeData.minutes }}</span>
           <span class="item">{{ timeData.seconds }}</span>
         </template>
-      </van-count-down>
+      </van-count-down> -->
       <!-- 更多按钮 -->
       <div class="more"
-           @click="moreClick">更多</div>
+           @click="moreClick">
+           <span>更多</span>
+           <i class="van-icon van-icon-arrow van-cell__right-icon" style="vertical-align:top;"></i></div>
     </div>
     <!-- 限时抢购商品 遍历父组件传来的数据并传递给子组件-->
     <FlashFood :flash_sale_product_list="flash_sale_product_list" />
@@ -61,9 +56,9 @@ export default {
 
 <style lang="less" scoped>
 #wrapper {
+  margin: 0 10px;
   margin-top: 0.625rem;
-  padding: 1.25rem 0 0.9375rem 0;
-  background-color: white;
+  padding: 0.25rem 0 0.9375rem 0;
 }
 
 .titleWrapper {
@@ -72,7 +67,7 @@ export default {
 }
 .title {
   display: inline-block;
-  border-left: 4px #3cb963 solid;
+  // border-left: 4px #ff1850 solid;
   padding-left: 0.3125rem;
   height: 1.3125rem;
   line-height: 1.3125rem;
@@ -95,8 +90,11 @@ export default {
 }
 
 .more {
-  color: #3cb963;
-  float: right;
-  font-size: 0.8rem;
+  position: absolute;
+  color: #666;
+  top:0;
+  right: 0;
+  line-height: 24px;
+  font-size: 0.4rem;
 }
 </style>

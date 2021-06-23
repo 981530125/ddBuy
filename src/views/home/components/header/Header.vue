@@ -8,8 +8,8 @@
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
 <template>
-  <div class="wrapper"
-       :style="showBgColor?'background-color: white;':''">
+  <div class="wrapper">
+    <div class="modelbkg" style=""></div>
     <div class="locationWrapper"
          ref="location">
       <svg viewBox="0 0 30 30"
@@ -101,7 +101,7 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 200;
   height: 3.125rem;
   line-height: 3.125rem;
   width: 100%;
@@ -109,6 +109,16 @@ export default {
   border-top: solid 1px #eeeeee;
   color: white;
   display: flex;
+  .modelbkg{
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    background-color: #000;
+    opacity: 0.1;
+    z-index: 11;
+  }
 }
 .iconLocation {
   position: absolute;
@@ -135,6 +145,7 @@ export default {
   background-color: black;
   border-radius: 3.125rem;
   flex: 0, 0, 20rem;
+  z-index: 100;
 }
 
 .locationWrapper .address {
@@ -165,6 +176,7 @@ export default {
   top: 0.625rem;
   height: 3.125rem;
   line-height: 3.125rem;
+  z-index: 100;
 }
 
 .searchWrapper.wheel {

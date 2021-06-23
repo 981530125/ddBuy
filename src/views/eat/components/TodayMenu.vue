@@ -93,7 +93,7 @@ export default {
     // 1.获取网络数据
     async _initData () {
       let todayMenuCategory = await getTodayMenuCategoryList();
-      if (todayMenuCategory.success) {
+      if (todayMenuCategory.msg == 'ok') {
         this.todayMenuCategoryLists = todayMenuCategory.data.list;
         this.$nextTick(() => {
           this._initMenuTitleScroll();
